@@ -23,3 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('properties',[PropertyController::class,'index'])->name('api.properties.index');
 Route::post('properties',[PropertyController::class,'store'])->name('api.properties.store');
 Route::put('properties/{property}',[PropertyController::class, 'update'])->name('api.properties.update');
+
+Route::delete('properties',[PropertyController::class, 'destroy'])->name('api.properties.destroy');
