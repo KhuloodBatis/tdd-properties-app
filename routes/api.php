@@ -24,4 +24,4 @@ Route::get('properties',[PropertyController::class,'index'])->name('api.properti
 Route::post('properties',[PropertyController::class,'store'])->name('api.properties.store');
 Route::put('properties/{property}',[PropertyController::class, 'update'])->name('api.properties.update');
 
-Route::delete('properties',[PropertyController::class, 'destroy'])->name('api.properties.destroy');
+Route::delete('properties/{property}',[PropertyController::class, 'destroy'])->name('api.properties.destroy');

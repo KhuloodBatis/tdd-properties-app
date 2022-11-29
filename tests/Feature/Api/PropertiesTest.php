@@ -71,37 +71,37 @@ class PropertiesTest extends TestCase
         );
     }
     /** @test */
-    // public function  test_can_update_a_property()
-    // {
-    //     $this->withoutExceptionHandling();
-    //     $existingProperty = Property::factory()->create();
-	// 	$newProperty = Property::factory()->make();
+    public function  test_can_update_a_property()
+    {
+        $this->withoutExceptionHandling();
+        $existingProperty = Property::factory()->create();
+		$newProperty = Property::factory()->make();
 
-	// 	$response = $this->putJson(
-	// 		route($this->routePrefix . 'update', $existingProperty),
-	// 		$newProperty->toArray()
-	// 	);
-	// 	$response->assertJson([
-	// 		'data' => [
-	// 			// We keep the ID from the existing Property.
-	// 			'id' => $existingProperty->id,
-	// 			// But making sure the title changed.
-	// 			'title' => $newProperty->title
-	// 		]
-	// 	]);
+		$response = $this->putJson(
+			route($this->routePrefix . 'update',$existingProperty->id),
+			$newProperty->toArray()
+		);
+		$response->assertJson([
+			'data' => [
+				// We keep the ID from the existing Property.
+				'id' => $existingProperty->id,
+				// But making sure the title changed.
+				'type' => $newProperty->type
+			]
+		]);
 
-	// 	$this->assertDatabaseHas(
-	// 		'properties',
-	// 		$newProperty->toArray()
-	// 	);
-    // }
+		$this->assertDatabaseHas(
+			'properties',
+			$newProperty->toArray()
+		);
+    }
 	/** @test */
 	public function can_delete_a_property()
 	{
 		$existingProperty = Property::factory()->create();
 
 		$this->deleteJson(
-			route($this->routePrefix . 'destroy', $existingProperty)
+			route($this->routePrefix . 'destroy', $existingProperty->id)
 		)->assertNoContent();
 		// You can also use assertStatus(204) instead of assertNoContent()
 	    // in case you're using a Laravel version that does not have this assertion.
